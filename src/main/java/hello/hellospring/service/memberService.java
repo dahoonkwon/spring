@@ -32,6 +32,10 @@ public class memberService {
      */
 
     public List<Member> findMember(){
+        return repositiry.findAll(); 
+    }
 
+    public Optional<Member> findOne(Long memberId){
+        return memberRepository.findById(memberId);
     }
 }
