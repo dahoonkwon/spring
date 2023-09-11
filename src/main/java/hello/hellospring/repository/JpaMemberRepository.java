@@ -10,6 +10,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     private final EntityManager em;
 
+    private static long sequence = 0L;
     public JpaMemberRepository(EntityManager em) {
         this.em = em;
     }
@@ -17,6 +18,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public Member save(Member member) {
+        member.setId(++sequence);
         em.persist(member);
         return member;
     }
