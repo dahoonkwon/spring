@@ -23,14 +23,20 @@ class MemberServiceTest {
     }
     @Test
     public void 회원가입() throws Exception {
+        long startTm = System.currentTimeMillis();
         //Given
-        Member member = new Member();
-        member.setName("hello");
-        //When
-        Long saveId = memberService.join(member);
-        //Then
-        Member findMember = memberRepository.findById(saveId).get();
-        assertEquals(member.getName(), findMember.getName());
+        try {
+            Member member = new Member();
+            member.setName("hello1");
+            //When
+            Long saveId = memberService.join(member);
+            //Then
+            Member findMember = memberRepository.findById(saveId).get();
+            assertEquals(member.getName(), findMember.getName());
+        }finally {
+            long endTm = System.currentTimeMillis();
+            System.out.print("processEndTime : " + String.valueOf(endTm - startTm));
+        }
     }
     @Test
     public void 중복_회원_예외() throws Exception {
